@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    sh 'docker build -t fastapi-length-app .'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    sh 'pytest --cov=./'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    sh '''
+                    kubectl apply -f deployment.yaml
+                    kubectl apply -f service.yaml
+                    '''
+                }
+            }
+        }
+    }
+}

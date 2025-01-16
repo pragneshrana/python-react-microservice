@@ -1,0 +1,11 @@
+Build Docker Image:
+
+docker build -t fastapi-backend .
+
+Test Docker Locally (optional):
+
+docker run -p 8000:8000 fastapi-backend
+
+docker tag fastapi-backend:latest pragneshrana244/fastapi-backend:latest
+docker push pragneshrana244/fastapi-backend:latest
+
